@@ -34,8 +34,8 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
             String text = update.message().text();
             Long chatId = update.message().chat().id();
             if ("/start".equalsIgnoreCase(text)) {
-            SendMessage sendMessage = new SendMessage(chatId, "Привет! Это чат-бот приюта для животных. Если хотите взять кошку, напишите /cat, собаку - /dog");
-            telegramBot.execute(sendMessage);
+                SendMessage sendMessage = new SendMessage(chatId, "Привет! Это чат-бот приюта для животных. Если хотите взять кошку, напишите /cat, собаку - /dog");
+                telegramBot.execute(sendMessage);
             }
             if ("/cat".equalsIgnoreCase(text)) {
                 SendMessage catMessage = new SendMessage(chatId, "Вы выбрали приют для котов");
