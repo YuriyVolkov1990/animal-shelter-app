@@ -20,23 +20,31 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     @Autowired
     private TelegramBot telegramBot;
-//    @Autowired
+
+    //    @Autowired
 //    private ShelterRepository repository;
     @PostConstruct
     public void init() {
         telegramBot.setUpdatesListener(this);
     }
+
     @Override
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             String text = update.message().text();
             Long chatId = update.message().chat().id();
             if ("/start".equalsIgnoreCase(text)) {
-                SendMessage sendMessage = new SendMessage(chatId, "HI");
-                telegramBot.execute(sendMessage);
+            SendMessage sendMessage = new SendMessage(chatId, "Привет! Это чат-бот приюта для животных. Если хотите взять кошку, напишите /cat, собаку - /dog");
+            telegramBot.execute(sendMessage);
+            }
+            if ("/cat".equalsIgnoreCase(text)) {
+                SendMessage catMessage = new SendMessage(chatId, "Вы выбрали приют для котов");
+                telegramBot.execute(catMessage);
+            } else if ("/dog".equalsIgnoreCase(text)) {
+                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак");
+                telegramBot.execute(dogMessage);
             }
         });
-            return UpdatesListener.CONFIRMED_UPDATES_ALL;
+        return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-
 }
