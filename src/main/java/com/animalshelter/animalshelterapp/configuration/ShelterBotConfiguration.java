@@ -1,5 +1,6 @@
 package com.animalshelter.animalshelterapp.configuration;
 
+import com.animalshelter.animalshelterapp.model.Shelter;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.DeleteMyCommands;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,11 @@ public class ShelterBotConfiguration {
         TelegramBot bot = new TelegramBot(token);
         bot.execute(new DeleteMyCommands());
         return bot;
+    }
+
+    @Bean
+    public Shelter shelter() {
+        return new Shelter("dgknknfa");
     }
 
 }

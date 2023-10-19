@@ -18,11 +18,7 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
     @Autowired
     private TelegramBot telegramBot;
     @Autowired
-    private final Shelter shelter;
-
-    public ShelterBotUpdatesListener(Shelter shelter) {
-        this.shelter = shelter;
-    }
+    private Shelter shelter;
 
     @PostConstruct
     public void init() {
@@ -46,15 +42,17 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
                         " Чтобы принять и записать контактные данные для связи, введите /contact." +
                         " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
                 telegramBot.execute(catMessage);
+                if ("/info".equalsIgnoreCase(text)) {
+                    shelter.setAddress("MYYYYYYYAAAAADRES");
+                    String adres = shelter.getAddress();
+                    SendMessage adresMessage = new SendMessage(chatId, adres);
+                    telegramBot.execute(adresMessage);
+                }
             } else if ("/dog".equalsIgnoreCase(text)) {
                 SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
                 telegramBot.execute(dogMessage);
             }
-            if ("/info".equalsIgnoreCase(text)) {
-                shelter.setAddress("Dgd24242353lmfdbgbdshbfhsdbfhsd");
-                shelter.getAddress();
-            }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
+        }
     }
-}
