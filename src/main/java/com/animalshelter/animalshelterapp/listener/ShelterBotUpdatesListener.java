@@ -42,10 +42,12 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
                         " Чтобы принять и записать контактные данные для связи, введите /contact." +
                         " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
                 telegramBot.execute(catMessage);
-                if ("/info".equalsIgnoreCase(text)) {
+                String textCat = update.message().text();
+                Long chatIdCat = update.message().chat().id();
+                if ("/info".equalsIgnoreCase(textCat)) {
                     shelter.setAddress("MYYYYYYYAAAAADRES");
                     String adres = shelter.getAddress();
-                    SendMessage adresMessage = new SendMessage(chatId, adres);
+                    SendMessage adresMessage = new SendMessage(chatIdCat, adres);
                     telegramBot.execute(adresMessage);
                 }
             } else if ("/dog".equalsIgnoreCase(text)) {
