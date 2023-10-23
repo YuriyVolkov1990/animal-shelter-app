@@ -1,5 +1,7 @@
 package com.animalshelter.animalshelterapp.listener;
 
+import com.animalshelter.animalshelterapp.configuration.CommandEvent;
+import com.animalshelter.animalshelterapp.configuration.CommandState;
 import com.animalshelter.animalshelterapp.model.Shelter;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
@@ -8,6 +10,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +22,8 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
     private TelegramBot telegramBot;
     @Autowired
     private Shelter shelter;
+    @Autowired
+    private StateMachine<CommandState, CommandEvent> stateMachine;
 
     @PostConstruct
     public void init() {
