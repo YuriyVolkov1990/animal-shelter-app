@@ -36,20 +36,21 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
             }
             if ("/cat".equalsIgnoreCase(text)) {
                 SendMessage catMessage = new SendMessage(chatId,
-                        "Вы выбрали приют для котов. Чтобы получить расписание работы приюта, адрес, и схему проезда, введите /info." +
-                        " Чтобы получить контактные данные охраны для оформления пропуска на машину, введите /guard." +
-                        " Чтобы получить общие рекомендации о технике безопасности на территории приюта, введите /recomend." +
-                        " Чтобы принять и записать контактные данные для связи, введите /contact." +
+                        "Вы выбрали приют для котов. Чтобы получить расписание работы приюта, адрес, и схему проезда, введите /info." + "\n\n" +
+                        " Чтобы получить контактные данные охраны для оформления пропуска на машину, введите /guard." + "\n\n" +
+                        " Чтобы получить общие рекомендации о технике безопасности на территории приюта, введите /recommend." + "\n\n" +
+                        " Чтобы принять и записать контактные данные для связи, введите /contact." + "\n\n" +
                         " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
                 telegramBot.execute(catMessage);
-                String textCat = update.message().text();
-                Long chatIdCat = update.message().chat().id();
-                if ("/info".equalsIgnoreCase(textCat)) {
-                    shelter.setAddress("MYYYYYYYAAAAADRES");
-                    String adres = shelter.getAddress();
-                    SendMessage adresMessage = new SendMessage(chatIdCat, adres);
-                    telegramBot.execute(adresMessage);
-                }
+//                String textcat = update.message().text();
+//                Long chatIdcat = update.message().chat().id();
+//                    if (textcat.equalsIgnoreCase("/info")) {
+//                        shelter.setAddress("MYYYYYYYAAAAADRES");
+//                        String adres = shelter.getAddress();
+//                        SendMessage adresMessage = new SendMessage(chatIdcat, adres);
+//                        telegramBot.execute(adresMessage);
+//                    }
+
             } else if ("/dog".equalsIgnoreCase(text)) {
                 SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
                 telegramBot.execute(dogMessage);
