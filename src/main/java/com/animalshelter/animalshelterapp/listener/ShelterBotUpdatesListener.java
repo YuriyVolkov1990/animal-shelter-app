@@ -47,7 +47,11 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
                         " Чтобы принять и записать контактные данные для связи, введите /contact." + "\n\n" +
                         " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
                 telegramBot.execute(catMessage);
-//                String textcat = update.message().text();
+            } else if ("/dog".equalsIgnoreCase(text)) {
+                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
+                telegramBot.execute(dogMessage);
+            }
+            //                String textcat = update.message().text();
 //                Long chatIdcat = update.message().chat().id();
 //                    if (textcat.equalsIgnoreCase("/info")) {
 //                        shelter.setAddress("MYYYYYYYAAAAADRES");
@@ -55,11 +59,6 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
 //                        SendMessage adresMessage = new SendMessage(chatIdcat, adres);
 //                        telegramBot.execute(adresMessage);
 //                    }
-
-            } else if ("/dog".equalsIgnoreCase(text)) {
-                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
-                telegramBot.execute(dogMessage);
-            }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
         }
