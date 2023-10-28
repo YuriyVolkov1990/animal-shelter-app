@@ -1,6 +1,8 @@
 package com.animalshelter.animalshelterapp.configuration;
 
 import com.animalshelter.animalshelterapp.model.Shelter;
+import com.animalshelter.animalshelterapp.statemachine.event.CommandEvent;
+import com.animalshelter.animalshelterapp.statemachine.state.CommandState;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.DeleteMyCommands;
 import org.springframework.beans.factory.annotation.Value;

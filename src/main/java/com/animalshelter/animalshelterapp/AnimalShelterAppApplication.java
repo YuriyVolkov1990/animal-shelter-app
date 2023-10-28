@@ -1,7 +1,7 @@
 package com.animalshelter.animalshelterapp;
 
-import com.animalshelter.animalshelterapp.configuration.CommandEvent;
-import com.animalshelter.animalshelterapp.configuration.CommandState;
+import com.animalshelter.animalshelterapp.statemachine.event.CommandEvent;
+import com.animalshelter.animalshelterapp.statemachine.state.CommandState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

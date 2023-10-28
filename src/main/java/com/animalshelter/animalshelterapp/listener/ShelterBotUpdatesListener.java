@@ -1,7 +1,7 @@
 package com.animalshelter.animalshelterapp.listener;
 
-import com.animalshelter.animalshelterapp.configuration.CommandEvent;
-import com.animalshelter.animalshelterapp.configuration.CommandState;
+import com.animalshelter.animalshelterapp.statemachine.event.CommandEvent;
+import com.animalshelter.animalshelterapp.statemachine.state.CommandState;
 import com.animalshelter.animalshelterapp.model.Shelter;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
