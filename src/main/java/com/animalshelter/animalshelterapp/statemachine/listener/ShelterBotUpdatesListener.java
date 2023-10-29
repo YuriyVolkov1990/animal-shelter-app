@@ -1,8 +1,9 @@
-package com.animalshelter.animalshelterapp.listener;
+package com.animalshelter.animalshelterapp.statemachine.listener;
 
+import com.animalshelter.animalshelterapp.entity.Shelter;
+import com.animalshelter.animalshelterapp.service.impl.CatShelteringService;
 import com.animalshelter.animalshelterapp.statemachine.event.CommandEvent;
 import com.animalshelter.animalshelterapp.statemachine.state.CommandState;
-import com.animalshelter.animalshelterapp.model.Shelter;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
@@ -10,21 +11,25 @@ import com.pengrad.telegrambot.request.SendMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
+import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.listener.StateMachineListener;
+import org.springframework.statemachine.state.State;
+import org.springframework.statemachine.transition.Transition;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 @Service
-public class ShelterBotUpdatesListener implements UpdatesListener {
+public class ShelterBotUpdatesListener implements UpdatesListener, StateMachineListener<CommandState, CommandEvent> {
     private final Logger logger = LoggerFactory.getLogger(ShelterBotUpdatesListener.class);
     @Autowired
     private TelegramBot telegramBot;
     @Autowired
     private Shelter shelter;
     @Autowired
-    private StateMachine<CommandState, CommandEvent> stateMachine;
-
+    private CatShelteringService catShelteringService;
     @PostConstruct
     public void init() {
         telegramBot.setUpdatesListener(this);
@@ -47,14 +52,6 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
                         " Чтобы принять и записать контактные данные для связи, введите /contact." + "\n\n" +
                         " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
                 telegramBot.execute(catMessage);
-//                String textcat = update.message().text();
-//                Long chatIdcat = update.message().chat().id();
-//                    if (textcat.equalsIgnoreCase("/info")) {
-//                        shelter.setAddress("MYYYYYYYAAAAADRES");
-//                        String adres = shelter.getAddress();
-//                        SendMessage adresMessage = new SendMessage(chatIdcat, adres);
-//                        telegramBot.execute(adresMessage);
-//                    }
 
             } else if ("/dog".equalsIgnoreCase(text)) {
                 SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
@@ -63,4 +60,64 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
         }
+
+    @Override
+    public void stateChanged(State<CommandState, CommandEvent> from, State<CommandState, CommandEvent> to) {
+
     }
+
+    @Override
+    public void stateEntered(State<CommandState, CommandEvent> state) {
+
+    }
+
+    @Override
+    public void stateExited(State<CommandState, CommandEvent> state) {
+
+    }
+
+    @Override
+    public void eventNotAccepted(Message<CommandEvent> event) {
+
+    }
+
+    @Override
+    public void transition(Transition<CommandState, CommandEvent> transition) {
+
+    }
+
+    @Override
+    public void transitionStarted(Transition<CommandState, CommandEvent> transition) {
+
+    }
+
+    @Override
+    public void transitionEnded(Transition<CommandState, CommandEvent> transition) {
+
+    }
+
+    @Override
+    public void stateMachineStarted(StateMachine<CommandState, CommandEvent> stateMachine) {
+
+    }
+
+    @Override
+    public void stateMachineStopped(StateMachine<CommandState, CommandEvent> stateMachine) {
+
+    }
+
+    @Override
+    public void stateMachineError(StateMachine<CommandState, CommandEvent> stateMachine, Exception exception) {
+
+    }
+
+    @Override
+    public void extendedStateChanged(Object key, Object value) {
+
+    }
+
+    @Override
+    public void stateContext(StateContext<CommandState, CommandEvent> stateContext) {
+
+    }
+}

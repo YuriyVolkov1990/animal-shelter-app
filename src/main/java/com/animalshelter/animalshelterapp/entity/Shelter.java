@@ -1,4 +1,4 @@
-package com.animalshelter.animalshelterapp.model;
+package com.animalshelter.animalshelterapp.entity;
 
 public class Shelter {
     private String address;
