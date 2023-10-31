@@ -1,6 +1,6 @@
 package com.animalshelter.animalshelterapp.entity;
 
-import com.animalshelter.animalshelterapp.interfaces.CatRepository;
+import com.animalshelter.animalshelterapp.repository.CatRepository;
 
 import javax.persistence.Entity;
 

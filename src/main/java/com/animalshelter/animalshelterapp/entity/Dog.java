@@ -1,6 +1,6 @@
 package com.animalshelter.animalshelterapp.entity;
 
-import com.animalshelter.animalshelterapp.interfaces.DogRepository;
+import com.animalshelter.animalshelterapp.repository.DogRepository;
 
 import javax.persistence.Entity;
 

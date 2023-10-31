@@ -2,7 +2,9 @@ package com.animalshelter.animalshelterapp.listener;
 
 import com.animalshelter.animalshelterapp.configuration.CommandEvent;
 import com.animalshelter.animalshelterapp.configuration.CommandState;
+import com.animalshelter.animalshelterapp.keyboard.ReplyKeyboardMaker;
 import com.animalshelter.animalshelterapp.model.Shelter;
+import com.animalshelter.animalshelterapp.service.ShelterService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
@@ -19,9 +21,13 @@ import java.util.List;
 public class ShelterBotUpdatesListener implements UpdatesListener {
     private final Logger logger = LoggerFactory.getLogger(ShelterBotUpdatesListener.class);
     @Autowired
+    private ReplyKeyboardMaker replyKeyboardMaker;
+    @Autowired
     private TelegramBot telegramBot;
     @Autowired
     private Shelter shelter;
+    @Autowired
+    private ShelterService shelterService;
     @Autowired
     private StateMachine<CommandState, CommandEvent> stateMachine;
 
@@ -36,21 +42,28 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
             String text = update.message().text();
             Long chatId = update.message().chat().id();
             if ("/start".equalsIgnoreCase(text)) {
-                SendMessage sendMessage = new SendMessage(chatId, "Привет! Это чат-бот приюта для животных. Если хотите взять кошку, напишите /cat, собаку - /dog");
+                SendMessage sendMessage = new SendMessage(chatId, "Выберите приют");
+                sendMessage.replyMarkup(replyKeyboardMaker.getMainMenuKeyboard());
                 telegramBot.execute(sendMessage);
             }
-            if ("/cat".equalsIgnoreCase(text)) {
-                SendMessage catMessage = new SendMessage(chatId,
-                        "Вы выбрали приют для котов. Чтобы получить расписание работы приюта, адрес, и схему проезда, введите /info." + "\n\n" +
-                        " Чтобы получить контактные данные охраны для оформления пропуска на машину, введите /guard." + "\n\n" +
-                        " Чтобы получить общие рекомендации о технике безопасности на территории приюта, введите /recommend." + "\n\n" +
-                        " Чтобы принять и записать контактные данные для связи, введите /contact." + "\n\n" +
-                        " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
-                telegramBot.execute(catMessage);
-            } else if ("/dog".equalsIgnoreCase(text)) {
-                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
-                telegramBot.execute(dogMessage);
+            switch (text) {
+                case "Выбрать приют для кошек"->
+                        catMenu(updates);
+                case "Выбрать приют для собак"->
+                        dogMenu(updates);
             }
+//            if ("/cat".equalsIgnoreCase(text)) {
+//                SendMessage catMessage = new SendMessage(chatId,
+//                        "Вы выбрали приют для котов. Чтобы получить расписание работы приюта, адрес, и схему проезда, введите /info." + "\n\n" +
+//                        " Чтобы получить контактные данные охраны для оформления пропуска на машину, введите /guard." + "\n\n" +
+//                        " Чтобы получить общие рекомендации о технике безопасности на территории приюта, введите /recommend." + "\n\n" +
+//                        " Чтобы принять и записать контактные данные для связи, введите /contact." + "\n\n" +
+//                        " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
+//                telegramBot.execute(catMessage);
+//            } else if ("/dog".equalsIgnoreCase(text)) {
+//                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
+//                telegramBot.execute(dogMessage);
+//            }
             //                String textcat = update.message().text();
 //                Long chatIdcat = update.message().chat().id();
 //                    if (textcat.equalsIgnoreCase("/info")) {
@@ -62,4 +75,32 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
         }
+    private void catMenu (List<Update> updates) {
+        updates.forEach(update -> {
+            String text = update.message().text();
+            Long chatId = update.message().chat().id();
+            if ("Выбрать приют для кошек".equalsIgnoreCase(text)) {
+                SendMessage catMessage = new SendMessage(chatId, "Вы выбрали кошачий приют");
+                catMessage.replyMarkup(replyKeyboardMaker.getCatMenuKeyboard());
+                telegramBot.execute(catMessage);
+                SendMessage infoMessage = new SendMessage(chatId, shelterService.getInfo(1L));
+                telegramBot.execute(infoMessage);
+            }
+//        if ("Инфо про кошачий приют".equalsIgnoreCase(text)) {
+//            SendMessage infoMessage = new SendMessage(chatId, shelterService.getInfo(1L));
+//            telegramBot.execute(infoMessage);
+//        }
+        });
+    }
+    private void dogMenu (List<Update> updates) {
+        updates.forEach(update -> {
+            String text = update.message().text();
+            Long chatId = update.message().chat().id();
+            if ("Выбрать приют для кошек".equalsIgnoreCase(text)) {
+                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали собачий приют");
+                dogMessage.replyMarkup(replyKeyboardMaker.getDogMenuKeyboard());
+                telegramBot.execute(dogMessage);
+            }
+        });
+    }
     }

@@ -1,4 +1,4 @@
-package com.animalshelter.animalshelterapp.interfaces;
+package com.animalshelter.animalshelterapp.repository;
 
 import com.animalshelter.animalshelterapp.entity.Dog;
 import org.springframework.data.jpa.repository.JpaRepository;

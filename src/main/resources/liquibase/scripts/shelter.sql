@@ -1,9 +1,14 @@
--- liquibase formatted sql
-
---chageset volkov:1
-create table shelter(
+create table cat_shelter(
     id bigserial primary key,
-    chat_id int8 not null,
-    message text not null,
-    exec_date timestamp not null
+    info text not null,
+    guardData text not null,
+    recommendation text not null,
+    contact text not null
+)
+create table dog_shelter(
+    id bigserial primary key,
+    info text not null,
+    guardData text not null,
+    recommendation text not null,
+    contact text not null
 )
