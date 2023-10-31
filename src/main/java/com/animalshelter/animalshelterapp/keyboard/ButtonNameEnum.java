@@ -18,4 +18,7 @@ public enum ButtonNameEnum {
         this.buttonName = buttonName;
     }
 
+    public String getButtonName() {
+        return buttonName;
+    }
 }
