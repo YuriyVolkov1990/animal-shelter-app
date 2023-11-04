@@ -18,18 +18,18 @@ public class DogService {
     }
 
     public Dog registerDog(Dog dog) {
-        logger.info("Запускаем метод registerCat.Регистрируем кота в приюте");
+        logger.info("Запускаем метод registerDog.Регистрируем собаку в приюте");
         return dogRepository.save(dog);
     }
 
     public Dog findDogById(Long dogId) {
-        logger.info("Запускаем метод findCatById. Ищем кота по id");
+        logger.info("Запускаем метод findDogById. Ищем собаку по id");
         return dogRepository.findById(dogId)
                 .orElseThrow(CatNotFoundException::new);
     }
 
     public Dog updateDog(Long dogId, Dog dog) {
-        logger.info("Запускаем метод updateCat. Изменяем информацию о коте");
+        logger.info("Запускаем метод updateDog. Изменяем информацию о собаке");
         Dog existingDog = dogRepository.findById(dogId)
                 .orElseThrow(CatNotFoundException::new);
         existingDog.setName(dog.getName());
@@ -38,7 +38,7 @@ public class DogService {
     }
 
     public Dog deleteDog(Long dogId) {
-        logger.info("Запускаем метод deleteCat. Удаляем кота из базы");
+        logger.info("Запускаем метод deleteDog. Удаляем собаку из базы");
         Dog dog = dogRepository.findById(dogId).orElseThrow(CatNotFoundException::new);
         dogRepository.delete(dog);
         return dog;
