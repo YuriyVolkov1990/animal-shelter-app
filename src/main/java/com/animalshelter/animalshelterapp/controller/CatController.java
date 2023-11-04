@@ -2,8 +2,6 @@ package com.animalshelter.animalshelterapp.controller;
 
 import com.animalshelter.animalshelterapp.entity.Cat;
 import com.animalshelter.animalshelterapp.service.CatService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,4 +38,4 @@ public class CatController {
         return ResponseEntity.ok(updatedCat);
     }
 }
-}
+

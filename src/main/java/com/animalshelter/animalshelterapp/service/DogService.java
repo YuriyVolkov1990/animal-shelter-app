@@ -17,18 +17,18 @@ public class DogService {
         this.dogRepository = dogRepository;
     }
 
-    public Dog registerCat(Dog dog) {
+    public Dog registerDog(Dog dog) {
         logger.info("Запускаем метод registerCat.Регистрируем кота в приюте");
         return dogRepository.save(dog);
     }
 
-    public Dog findCatById(Long dogId) {
+    public Dog findDogById(Long dogId) {
         logger.info("Запускаем метод findCatById. Ищем кота по id");
         return dogRepository.findById(dogId)
                 .orElseThrow(CatNotFoundException::new);
     }
 
-    public Dog updateCat(Long dogId, Dog dog) {
+    public Dog updateDog(Long dogId, Dog dog) {
         logger.info("Запускаем метод updateCat. Изменяем информацию о коте");
         Dog existingDog = dogRepository.findById(dogId)
                 .orElseThrow(CatNotFoundException::new);
@@ -37,7 +37,7 @@ public class DogService {
         return dogRepository.save(existingDog);
     }
 
-    public Dog deleteCat(Long dogId) {
+    public Dog deleteDog(Long dogId) {
         logger.info("Запускаем метод deleteCat. Удаляем кота из базы");
         Dog dog = dogRepository.findById(dogId).orElseThrow(CatNotFoundException::new);
         dogRepository.delete(dog);
