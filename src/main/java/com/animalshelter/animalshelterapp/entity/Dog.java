@@ -5,23 +5,23 @@ import java.util.Objects;
 
 @Entity
 public abstract class Dog {
-    private int id;
+    private Long id;
     private String name;
     private int age;
     private int weight;
 
-    public Dog(int id, String name, int age, int weight) {
+    public Dog(Long id, String name, int age, int weight) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.weight = weight;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

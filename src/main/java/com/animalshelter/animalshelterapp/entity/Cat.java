@@ -1,27 +1,29 @@
 package com.animalshelter.animalshelterapp.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public abstract class Cat {
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
     private int age;
     private int weight;
 
-    public Cat(int id, String name, int age, int weight) {
+    public Cat(Long id, String name, int age, int weight) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.weight = weight;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
