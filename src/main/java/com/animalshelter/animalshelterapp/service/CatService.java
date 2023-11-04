@@ -1,6 +1,7 @@
 package com.animalshelter.animalshelterapp.service;
 
 import com.animalshelter.animalshelterapp.entity.Cat;
+import com.animalshelter.animalshelterapp.exception.CatNotFoundException;
 import com.animalshelter.animalshelterapp.repository.CatRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,15 @@ public class CatService {
         logger.info("Запускаем метод updateCat. Изменяем информацию о коте");
         Cat existingCat = catRepository.findById(catId)
                 .orElseThrow(CatNotFoundException::new);
+        existingCat.setName(cat.getName());
+        existingCat.setAge(cat.getAge());
+        return catRepository.save(existingCat);
+    }
 
+    public Cat deleteCat(Long catId) {
+        logger.info("Запускаем метод deleteCat. Удаляем кота из базы");
+        Cat cat = catRepository.findById(catId).orElseThrow(CatNotFoundException::new);
+        catRepository.delete(cat);
+        return cat;
     }
 }

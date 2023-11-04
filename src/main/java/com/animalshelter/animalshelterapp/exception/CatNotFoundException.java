@@ -1,4 +1,4 @@
-package com.animalshelter.animalshelterapp.service;
+package com.animalshelter.animalshelterapp.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
