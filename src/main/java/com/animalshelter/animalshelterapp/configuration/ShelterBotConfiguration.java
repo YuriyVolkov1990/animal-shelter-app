@@ -1,6 +1,6 @@
 package com.animalshelter.animalshelterapp.configuration;
 
-import com.animalshelter.animalshelterapp.model.Shelter;
+import com.animalshelter.animalshelterapp.entity.CatShelter;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.DeleteMyCommands;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +26,6 @@ public class ShelterBotConfiguration extends EnumStateMachineConfigurerAdapter<C
 
     public ShelterBotConfiguration() {
     }
-
     @Bean
     public TelegramBot telegramBot() {
         TelegramBot bot = new TelegramBot(token);
@@ -35,8 +34,8 @@ public class ShelterBotConfiguration extends EnumStateMachineConfigurerAdapter<C
     }
 
     @Bean
-    public Shelter shelter() {
-        return new Shelter("CatShelterAddress");
+    public CatShelter catShelter() {
+        return new CatShelter(0L, "aaaaa", "bbbbb", "ccccc", "ddsdgsdgsd");
     }
     @Override
     public void configure(StateMachineConfigurationConfigurer<CommandState, CommandEvent> config)

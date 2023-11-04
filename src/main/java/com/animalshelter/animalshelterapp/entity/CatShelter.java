@@ -27,6 +27,10 @@ public class CatShelter {
         this.contact = contact;
     }
 
+    public CatShelter() {
+
+    }
+
     public Long getId() {
         return id;
     }
