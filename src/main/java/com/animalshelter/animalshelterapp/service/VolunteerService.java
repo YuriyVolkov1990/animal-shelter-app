@@ -5,7 +5,9 @@ import com.animalshelter.animalshelterapp.exception.EntityNotFoundException;
 import com.animalshelter.animalshelterapp.repository.VolunteerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VolunteerService {
     private static final Logger logger = LoggerFactory.getLogger(DogService.class);
     private final VolunteerRepository volunteerRepository;

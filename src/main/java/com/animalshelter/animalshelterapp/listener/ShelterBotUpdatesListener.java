@@ -46,26 +46,6 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
                 case "Выбрать приют для кошек" -> catMenu(updates);
                 case "Выбрать приют для собак" -> dogMenu(updates);
             }
-//            if ("/cat".equalsIgnoreCase(text)) {
-//                SendMessage catMessage = new SendMessage(chatId,
-//                        "Вы выбрали приют для котов. Чтобы получить расписание работы приюта, адрес, и схему проезда, введите /info." + "\n\n" +
-//                        " Чтобы получить контактные данные охраны для оформления пропуска на машину, введите /guard." + "\n\n" +
-//                        " Чтобы получить общие рекомендации о технике безопасности на территории приюта, введите /recommend." + "\n\n" +
-//                        " Чтобы принять и записать контактные данные для связи, введите /contact." + "\n\n" +
-//                        " Если бот не может ответить на вопросы клиента, то можно позвать волонтера /volunteer");
-//                telegramBot.execute(catMessage);
-//            } else if ("/dog".equalsIgnoreCase(text)) {
-//                SendMessage dogMessage = new SendMessage(chatId, "Вы выбрали приют для собак. Чтобы узнать информацию о приюте, нажмите /info");
-//                telegramBot.execute(dogMessage);
-//            }
-            //                String textcat = update.message().text();
-//                Long chatIdcat = update.message().chat().id();
-//                    if (textcat.equalsIgnoreCase("/info")) {
-//                        shelter.setAddress("MYYYYYYYAAAAADRES");
-//                        String adres = shelter.getAddress();
-//                        SendMessage adresMessage = new SendMessage(chatIdcat, adres);
-//                        telegramBot.execute(adresMessage);
-//                    }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
@@ -80,24 +60,15 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
                 telegramBot.execute(catMessage);
             }
             menuChanger(updates);
-//            CatShelter catShelter1 = new CatShelter(0L, "aaaaa", "bbbbb", "ccccc", "ddsdgsdgsd");
-//            System.out.println("===================================================================");
-//            infoMenu(chatId);
-//            System.out.println("===================================================================");
-
         });
     }
 
     private void menuChanger(List<Update> updates) {
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         updates.forEach(update -> {
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             String text = update.message().text();
             Long chatId = update.message().chat().id();
-            System.out.println("/////////////////////////////////////////////////");
             switch (text) {
                 case "Инфо про кошачий приют" -> {
-                    System.out.println("****************************************");
                     infoMenu(chatId);
                 }
             }
@@ -106,9 +77,7 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
 
     private void infoMenu(Long chatId) {
         String info = shelterBotConfiguration.catShelter().getInfo();
-        System.out.println("------------------------------------------------");
         System.out.println(info);
-        System.out.println("------------------------------------------------");
         SendMessage infoMessage = new SendMessage(chatId, info);
         telegramBot.execute(infoMessage);
     }
@@ -125,19 +94,4 @@ public class ShelterBotUpdatesListener implements UpdatesListener {
         });
     }
 }
-//    private void catMenuDown (List<Update> updates) {
-//        CatShelter catShelter1 = new CatShelter(null, "aaaaa", "bbbbb", "ccccc","ddsdgsdgsd");
-//        updates.forEach(update -> {
-//            String text = update.message().text();
-//            Long chatId = update.message().chat().id();
-//        switch (text) {
-//            case "Инфо про кошачий приют" -> {
-//                String info = catShelter1.getInfo();
-//                System.out.println("------------------------------------------------");
-//                System.out.println(info);
-//                System.out.println("------------------------------------------------");
-//                SendMessage infoMessage = new SendMessage(chatId,info);
-//                telegramBot.execute(infoMessage);
-//            }
-//        }
-//        });
+
