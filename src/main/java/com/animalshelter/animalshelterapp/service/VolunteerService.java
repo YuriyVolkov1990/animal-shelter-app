@@ -14,12 +14,12 @@ public class VolunteerService {
         this.volunteerRepository = volunteerRepository;
     }
     public Volunteer registerVolunteer(Volunteer volunteer) {
-        logger.info("Запускаем метод registerVolunteer.Регистрируем кота в приюте");
+        logger.info("Запускаем метод registerVolunteer.Регистрируем волонтера в приюте");
         return volunteerRepository.save(volunteer);
     }
 
     public Volunteer findVolunteerById(Long volunteerId) {
-        logger.info("Запускаем метод findCatById. Ищем кота по id");
+        logger.info("Запускаем метод findVolunteerById. Ищем волонтера по id");
         return volunteerRepository.findById(volunteerId)
                 .orElseThrow(EntityNotFoundException::new);
     }
@@ -33,8 +33,8 @@ public class VolunteerService {
         return volunteerRepository.save(existingDog);
     }
 
-    public Volunteer deleteDog(Long volunteerId) {
-        logger.info("Запускаем метод deleteCat. Удаляем кота из базы");
+    public Volunteer deleteVolunteer(Long volunteerId) {
+        logger.info("Запускаем метод deleteVolunteer. Удаляем волонтера из базы");
         Volunteer volunteer = volunteerRepository.findById(volunteerId).orElseThrow(EntityNotFoundException::new);
         volunteerRepository.delete(volunteer);
         return volunteer;
