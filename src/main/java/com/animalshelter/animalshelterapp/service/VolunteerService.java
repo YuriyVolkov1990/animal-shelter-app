@@ -28,11 +28,11 @@ public class VolunteerService {
 
     public Volunteer updateVolunteer(Long volunteerId, Volunteer volunteer) {
         logger.info("Запускаем метод updateVolunteer. Изменяем информацию о волонтере");
-        Volunteer existingDog = volunteerRepository.findById(volunteerId)
+        Volunteer existingVolunteer = volunteerRepository.findById(volunteerId)
                 .orElseThrow(EntityNotFoundException::new);
-        existingDog.setName(volunteer.getName());
-        existingDog.setSurname(volunteer.getSurname());
-        return volunteerRepository.save(existingDog);
+        existingVolunteer.setName(volunteer.getName());
+        existingVolunteer.setSurname(volunteer.getSurname());
+        return volunteerRepository.save(existingVolunteer);
     }
 
     public Volunteer deleteVolunteer(Long volunteerId) {
