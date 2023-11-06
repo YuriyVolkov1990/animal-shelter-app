@@ -10,4 +10,11 @@ public class AnimalShelterAppApplication {
 		SpringApplication.run(AnimalShelterAppApplication.class, args);
 	}
 
+//	@Autowired
+//	private StateMachine<CommandState, CommandEvent> stateMachine;
+//	@Override
+//	public void run(String... args) throws Exception {
+//		stateMachine.sendEvent(CommandEvent.GET_INFO);
+//		stateMachine.sendEvent(CommandEvent.GET_GUARD);
+//	}
 }
